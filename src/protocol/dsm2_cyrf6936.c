@@ -186,7 +186,8 @@ u8 binding;
 
 #ifdef USE_FIXED_MFGID
     //static const u8 cyrfmfg_id[6] = {0x5e, 0x28, 0xa3, 0x1b, 0x00, 0x00}; //dx8
-    static const u8 cyrfmfg_id[6] = {0xd4, 0x62, 0xd6, 0xad, 0xd3, 0xff}; //dx6i
+    //static const u8 cyrfmfg_id[6] = {0xd4, 0x62, 0xd6, 0xad, 0xd3, 0xff}; //dx6i
+    static const u8 cyrfmfg_id[6] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff} //all 1's for sanity check
 #else
     static u8 cyrfmfg_id[6];
 #endif
@@ -752,10 +753,17 @@ static void initialize(u8 bind)
 #ifndef USE_FIXED_MFGID
     CYRF_GetMfgData(cyrfmfg_id);
     if (Model.fixed_id) {
+     /*
         cyrfmfg_id[0] ^= (Model.fixed_id >> 0) & 0xff;
         cyrfmfg_id[1] ^= (Model.fixed_id >> 8) & 0xff;
         cyrfmfg_id[2] ^= (Model.fixed_id >> 16) & 0xff;
         cyrfmfg_id[3] ^= (Model.fixed_id >> 24) & 0xff;
+        */
+     		//all 1's for sanity check 
+		     cyrfmfg_id[0] = 0xff;
+	     	cyrfmfg_id[1] = 0xff;
+		     cyrfmfg_id[2] = 0xff;
+		     cyrfmfg_id[3] = 0xff;
     }
 #endif
     if (Model.protocol == PROTOCOL_DSMX) {
