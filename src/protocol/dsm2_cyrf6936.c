@@ -753,19 +753,19 @@ static void initialize(u8 bind)
 #ifndef USE_FIXED_MFGID
     CYRF_GetMfgData(cyrfmfg_id);
     if (Model.fixed_id) {
-     ///*
+     /*
         cyrfmfg_id[0] ^= (Model.fixed_id >> 0) & 0xff;
         cyrfmfg_id[1] ^= (Model.fixed_id >> 8) & 0xff;
         cyrfmfg_id[2] ^= (Model.fixed_id >> 16) & 0xff;
         cyrfmfg_id[3] ^= (Model.fixed_id >> 24) & 0xff;
-        //*/
-	    /*
-     		//all 1's for sanity check 
-		     cyrfmfg_id[0] = 0xff;
-	     	cyrfmfg_id[1] = 0xff;
-		     cyrfmfg_id[2] = 0xff;
-		     cyrfmfg_id[3] = 0xff;
-		     */
+     */
+	    
+    //Changing GUID
+	cyrfmfg_id[0] = 0x10;
+	cyrfmfg_id[1] = 0x32;
+	cyrfmfg_id[2] = 0x54;
+	cyrfmfg_id[3] = 0x76;
+		     
     }
 #endif
     if (Model.protocol == PROTOCOL_DSMX) {
